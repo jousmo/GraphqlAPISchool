@@ -1,11 +1,17 @@
 'use strict'
 
-const { graphql, buildSchema } = require('graphql')
+const { buildSchema } = require('graphql')
+const express = require('express')
+const graphqlHTTP = require('express-graphql')
+const app = express()
+const port = process.env.port || 3001
 
 // Definiendo esquema
 const schema = buildSchema(`
   type Query {
+    "Retorna un saludo al mundo"
     hello: String
+    "Retorna un gran saludo"
     saludo: String
   }
 `)
@@ -20,11 +26,11 @@ const resolvers = {
   }
 }
 
-// Ejecutar el query hello
-graphql(schema, '{ hello }', resolvers).then((response) => {
-  console.log(response)
-})
+// Creando una API
+app.use('/api', graphqlHTTP({
+  schema: schema,
+  rootValue: resolvers,
+  graphiql: true
+}))
 
-graphql(schema, '{ saludo }', resolvers).then((response) => {
-  console.log(response)
-})
+app.listen(port, () => console.log(`Now browse to localhost:${port}/api`))
