@@ -124,6 +124,26 @@ query GetCourseById($course: ID!) {
 }
 ```
 
+#### Consultar las Personas con directiva en Student -> Avatar y Email con variables
+
+```graphql
+query GetPersonWithAvatar ($avatar: Boolean!, $email: Boolean!) {
+  getPersons{
+    _id
+    name
+    email @include(if: $email)
+    ... on Student @include(if: $avatar) {
+      avatar
+    }
+  }
+}
+
+{
+  "avatar": true,
+  "email": false
+}
+```
+
 ### Mutations
 
 #### Craar un curso

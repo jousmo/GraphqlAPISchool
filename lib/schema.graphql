@@ -3,7 +3,7 @@ type Course {
   title: String!
   teacher: String
   description: String!
-  topic: String
+  topic: String @deprecated
   level: Level
   students: [Student]
 }
