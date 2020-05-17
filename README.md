@@ -212,3 +212,19 @@ mutation CreateNewMonitor($monitorInput: PersonInput!) {
   }
 }
 ```
+
+#### Eliminar una Curso
+
+```graphql
+mutation {
+  deleteCourse(id: "5ec189b904308042617a5bb4")
+}
+```
+
+#### Eliminar una Persona
+
+```graphql
+mutation{
+  deletePerson(id: "5ec189fb04308042617a5bb5")
+}
+```
