@@ -37,6 +37,8 @@ type Query {
   getPersons: [Person]
   "Return One Person"
   getPerson(id: ID!): Person
+  "Return Global Search"
+  searchItems(keyword: String!): [GlobalSearch]
 }
 
 input CourseInput {
@@ -92,3 +94,5 @@ enum Level {
   intermedio
   avanzado
 }
+
+union GlobalSearch = Course | Student | Monitor

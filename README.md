@@ -144,6 +144,28 @@ query GetPersonWithAvatar ($avatar: Boolean!, $email: Boolean!) {
 }
 ```
 
+#### Consultar en Cursos, Estudiantes y Monitor dado una palabra
+```graphql
+{
+  searchItems(keyword: "Yeha") {
+    __typename
+    ... on Course {
+      title
+      description
+    }
+    ... on Monitor {
+      name
+      phone
+    }
+    ... on Student {
+      name
+      email
+    }
+  }
+}
+```
+
+
 ### Mutations
 
 #### Craar un curso
