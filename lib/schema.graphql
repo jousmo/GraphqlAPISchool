@@ -4,6 +4,7 @@ type Course {
   teacher: String
   description: String!
   topic: String
+  level: Level
   students: [Student]
 }
 
@@ -29,6 +30,7 @@ input CourseInput {
   teacher: String
   description: String!
   topic: String
+  level: Level
 }
 
 input CourseEditInput {
@@ -36,6 +38,7 @@ input CourseEditInput {
   teacher: String
   description: String
   topic: String
+  level: Level
 }
 
 input StudentInput {
@@ -59,4 +62,11 @@ type Mutation {
   editStudent(id: ID!, input: StudentEditInput!): Student
   "Add Student in One Course"
   addStudentCourse(idCourse: ID!, idStudent: ID!): Course
+}
+
+# Validates the types of level
+enum Level {
+  principiante
+  intermedio
+  avanzado
 }

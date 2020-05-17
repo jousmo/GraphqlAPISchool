@@ -25,6 +25,12 @@ Este es un proyecto paso a paso de como configurar un Server de Graphql con Expr
   docker-compose up -d
 ```
 
+  * Ejecutar el proyecto con Node JS
+
+```bash
+  npm run dev
+```
+
   * Ejecutar **GraphiQL** abrir tu navegador y escribir http://localhost:3001/api
 
 
@@ -159,5 +165,27 @@ mutation AddStudentCourse($course: ID!, $student: ID!) {
 {
   "course": "5ec04a91881ea63ec6445e8c",
   "student": "5ec061319583cd1cf5907e24"
+}
+```
+
+#### Agregar un curso con variables
+
+```graphql
+mutation CreateNewCourse($createInput: CourseInput!){
+  createCourse(input: $createInput) {
+    _id
+    title
+    level
+  }
+}
+
+{
+  "createInput": {
+    "title": "Docker Yeha",
+    "description": "Full Course Docker Yeha",
+    "topic": "Docker",
+    "level": "avanzado",
+    "teacher": "Jousmo"
+  }
 }
 ```
