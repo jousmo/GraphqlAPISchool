@@ -83,6 +83,22 @@ fragment CourseFields on Course {
 }
 ```
 
+#### Consultar un curso por ID con variables
+
+```graphql
+query GetCourseById($course: ID!) {
+  getCourse(id: $course) {
+    _id
+    title
+    description
+  }
+}
+
+
+{
+  "course": "5ec05d7485b2191a7c0c0f3d"
+}
+```
 
 ### Mutations
 
@@ -118,6 +134,7 @@ mutation {
 ```
 
 #### Agregar un estudiante a un curso
+
 ```graphql
 mutation {
   addStudentCourse(
@@ -127,5 +144,20 @@ mutation {
     _id
     title
   }
+}
+```
+
+#### Agregar un estudiante a un curso con varibles
+
+```graphql
+mutation AddStudentCourse($course: ID!, $student: ID!) {
+  addStudentCourse(idCourse: $course, idStudent: $student) {
+  	title
+  }
+}
+
+{
+  "course": "5ec04a91881ea63ec6445e8c",
+  "student": "5ec061319583cd1cf5907e24"
 }
 ```
