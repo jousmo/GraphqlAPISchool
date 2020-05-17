@@ -106,6 +106,24 @@ query GetCourseById($course: ID!) {
 }
 ```
 
+#### Consutar Personas por tipo Student o Monitor
+
+```graphql
+{
+  getPersons{
+    _id
+    name
+    email
+    ... on Student {
+      avatar
+    }
+    ... on Monitor {
+      phone
+    }
+  }
+}
+```
+
 ### Mutations
 
 #### Craar un curso
@@ -120,21 +138,6 @@ mutation{
   }){
     _id
     title
-  }
-}
-```
-
-#### Craar un estudiante
-
-```graphql
-mutation {
-  createStudent(input: {
-    name: "Gabriela Cruz Cornelio"
-    email: "gab2012corne@gmail.com"
-  }){
-    _id
-    name
-    email
   }
 }
 ```
@@ -186,6 +189,26 @@ mutation CreateNewCourse($createInput: CourseInput!){
     "topic": "Docker",
     "level": "avanzado",
     "teacher": "Jousmo"
+  }
+}
+```
+
+#### Agregar una Persona de tipo Monitor con variables
+
+```graphql
+mutation CreateNewMonitor($monitorInput: PersonInput!) {
+  createPerson(input: $monitorInput) {
+    _id
+    name
+    email
+  }
+}
+
+{
+  "monitorInput": {
+    "name": "Paulo Martinez",
+    "email": "pauloner@gmail.com",
+    "phone": "1234567890"
   }
 }
 ```
